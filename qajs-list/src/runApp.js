@@ -21,12 +21,24 @@ export function runApp(el) {
   const input = el.querySelector("input");
   const historyContainer = el.querySelector('[data-testid="historyContainer"]');
 
+  const removeParagraph = (p) => {
+    const item = p.srcElement || p;
+    historyContainer.removeChild(item);
+  };
+
+  document.querySelectorAll(".qa-history p").forEach((p) => {
+    p.addEventListener("click", () => {
+      removeParagraph(p);
+    });
+  });
+
   input.addEventListener("input", (_ev) => {
     button.hidden = !input.value;
   });
 
   button.addEventListener("click", () => {
     const newP = document.createElement("p");
+    newP.addEventListener("click", removeParagraph);
     newP.innerHTML = input.value;
     historyContainer.prepend(newP);
 
