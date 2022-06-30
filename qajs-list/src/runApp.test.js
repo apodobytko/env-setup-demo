@@ -27,6 +27,10 @@ describe("runApp", () => {
     button.click();
   }
 
+  function clickParagraph(index) {
+    el.querySelectorAll("p")[index].click();
+  }
+
   function isButtonHidden() {
     return button.hidden;
   }
@@ -82,5 +86,18 @@ describe("runApp", () => {
       clickButton();
     });
     expect(getParagraphs()).toEqual(["345", "234", "123", "1", "2"]);
+  });
+
+  it("removes paragraph on click", () => {
+    clickParagraph(1);
+    expect(getParagraphs().length).toBe(2);
+    expect(getParagraphs()).toEqual(["1", "3"]);
+
+    type("123");
+    clickButton();
+
+    clickParagraph(0);
+    expect(getParagraphs().length).toBe(2);
+    expect(getParagraphs()).toEqual(["1", "3"]);
   });
 });
