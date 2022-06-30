@@ -18,7 +18,8 @@
   },
   "homepage": "https://github.com/apodobytko/env-setup-demo#readme",
   "dependencies": {
-    "jest": "^28.1.2"
+    "jest": "^28.1.2",
+    "jest-environment-jsdom": "^28.1.2"
   },
   "devDependencies": {
     "@types/jest": "^28.1.3"
