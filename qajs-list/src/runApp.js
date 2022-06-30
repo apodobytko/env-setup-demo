@@ -16,23 +16,23 @@ export function runApp(el) {
     </div>
   `;
 
-  const button = el.querySelector('button');
-  const input = el.querySelector('input');
+  const button = el.querySelector("button");
+  const input = el.querySelector("input");
   const historyContainer = el.querySelector('[data-testid="historyContainer"]');
 
-  input.addEventListener('input', (_ev) => {
+  input.addEventListener("input", (_ev) => {
     button.hidden = !input.value;
   });
 
-  button.addEventListener('click', () => {
-    const newP = document.createElement('p');
+  button.addEventListener("click", () => {
+    const newP = document.createElement("p");
     newP.innerHTML = input.value;
     historyContainer.prepend(newP);
 
-    input.value = '';
+    input.value = "";
     button.hidden = true;
 
-    const paragraphs = [...historyContainer.querySelectorAll('p')];
+    const paragraphs = [...historyContainer.querySelectorAll("p")];
     if (paragraphs.length > 5) {
       paragraphs[5].remove();
     }
