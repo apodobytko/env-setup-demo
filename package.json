@@ -16,5 +16,11 @@
   "bugs": {
     "url": "https://github.com/apodobytko/env-setup-demo/issues"
   },
-  "homepage": "https://github.com/apodobytko/env-setup-demo#readme"
+  "homepage": "https://github.com/apodobytko/env-setup-demo#readme",
+  "dependencies": {
+    "jest": "^28.1.2"
+  },
+  "devDependencies": {
+    "@types/jest": "^28.1.3"
+  }
 }
