@@ -26,7 +26,7 @@ export function runApp(el) {
     historyContainer.removeChild(item);
   };
 
-  document.querySelectorAll(".qa-history p").forEach((p) => {
+  el.querySelectorAll(".qa-history p").forEach((p) => {
     p.addEventListener("click", () => {
       removeParagraph(p);
     });
