@@ -21,6 +21,10 @@ export function readPerson(id) {
   return fetchJSON(`/people/${id}`);
 }
 
+export function readPersons() {
+  return fetchJSON(`/people`);
+}
+
 export async function updatePerson(id, data) {
   const { _id, ...dataWithoutId } = data;
   const response = await fetch(`${BASE_URL}/people/${id}`, {
@@ -34,4 +38,11 @@ export async function updatePerson(id, data) {
     return response;
   }
   throw new Error(`${response.status}: ${response.statusText}`);
+}
+
+export async function deletePerson(id) {
+  const response = await fetch(`${BASE_URL}/people/${id}`, {
+    method: "DELETE",
+  });
+  return response.text();
 }
