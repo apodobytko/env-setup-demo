@@ -22,7 +22,10 @@ module.exports = {
       "error",
       {
         argsIgnorePattern: "^_",
+        varsIgnorePattern: "^_",
       },
     ],
+    "no-underscore-dangle": "OFF",
   },
+  ignorePatterns: ["qajs-list/dist/*"],
 };
