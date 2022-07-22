@@ -82,7 +82,7 @@ describe("CrudCrud: People", () => {
       );
     });
 
-    it("created person is on the list of persons", async () => {
+    it("has created person in the list of persons", async () => {
       const allPersonsResponseData = await readPersons();
 
       expect(allPersonsResponseData).toEqual(
