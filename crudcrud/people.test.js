@@ -1,5 +1,11 @@
 import Jabber from "jabber";
-import { createPerson, readPerson, updatePerson } from "./utils/crud";
+import {
+  createPerson,
+  readPerson,
+  readPersons,
+  updatePerson,
+  deletePerson,
+} from "./utils/crud";
 
 const jabber = new Jabber();
 
@@ -19,7 +25,10 @@ describe("CrudCrud: People", () => {
     age = randomNumber1to100();
   });
   it("can create a person", async () => {
-    const createResponseData = await createPerson({ age, name });
+    const createResponseData = await createPerson({
+      age,
+      name,
+    });
     expect(createResponseData).toEqual(
       expect.objectContaining({
         age,
@@ -39,8 +48,12 @@ describe("CrudCrud: People", () => {
   describe("Operation with person", () => {
     let userData;
     beforeEach(async () => {
-      userData = await createPerson({ age, name });
+      userData = await createPerson({
+        age,
+        name,
+      });
     });
+
     it("can update a person", async () => {
       const newName = getRandomName("new");
       await updatePerson(userData._id, {
@@ -55,8 +68,32 @@ describe("CrudCrud: People", () => {
         _id: userData._id,
       });
     });
-    it("can delete user", () => {
-      // @todo
+
+    it("can delete a person", async () => {
+      await deletePerson(userData._id);
+
+      const readPersonResponseData = await readPerson(userData._id);
+      expect(readPersonResponseData).toEqual(
+        expect.objectContaining({
+          status: 404,
+          title: "Not Found",
+          traceId: expect.stringMatching(/.+/),
+        })
+      );
+    });
+
+    it("has created person in the list of persons", async () => {
+      const allPersonsResponseData = await readPersons();
+
+      expect(allPersonsResponseData).toEqual(
+        expect.arrayContaining([
+          {
+            age,
+            name,
+            _id: expect.stringMatching(/\w+/),
+          },
+        ])
+      );
     });
   });
 });
